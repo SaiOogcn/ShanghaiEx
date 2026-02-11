@@ -1,0 +1,302 @@
+/* ShanghaiEx - 制沪等级 样式文件 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #9dc3fb;
+    overflow: hidden;
+}
+
+/* 容器 - 全屏布局 */
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* 头部 - 左上角悬浮 */
+.header {
+    position: absolute;
+    top: 0.75em;
+    left: 1em;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.site-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+/* 主内容区 - SVG地图全屏 */
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#svg {
+    width: 100%;
+    height: 100%;
+    max-width: 900px;
+    max-height: 100vh;
+    margin: auto;
+    display: block;
+}
+
+/* 区域路径样式 */
+.district {
+    stroke: #000;
+    stroke-width: 0.2;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.district:hover {
+    stroke: #333;
+    stroke-width: 0.4;
+    filter: brightness(0.9);
+}
+
+/* 等级颜色 */
+.district.white { fill: #ffffff; }
+.district.blue { fill: #3598db; }
+.district.green { fill: #30cc70; }
+.district.yellow { fill: #f3c218; }
+.district.orange { fill: #d58337; }
+.district.red { fill: #e84c3d; }
+
+/* 区域标签 */
+.labels text {
+    font-size: 0.8px;
+    fill: #333;
+    pointer-events: none;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-weight: 700;
+}
+
+/* 选择表单 */
+.form {
+    position: fixed;
+    display: none;
+    width: 220px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.form.show {
+    display: block;
+}
+
+.form .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #eee;
+}
+
+.form .title .name {
+    font-weight: 700;
+    font-size: 16px;
+    color: #333;
+}
+
+.form .title .search {
+    font-size: 12px;
+    color: #3598db;
+    text-decoration: none;
+}
+
+.form .title .search:hover {
+    text-decoration: underline;
+}
+
+.form .title .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #999;
+    line-height: 1;
+    padding: 0 5px;
+}
+
+.form .title .close-btn:hover {
+    color: #333;
+}
+
+.form .levels {
+    padding: 10px 0;
+}
+
+.form .level {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.form .level:hover {
+    background: #f5f5f5;
+}
+
+.form .level.selected {
+    background: #e3f2fd;
+}
+
+.color-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 12px;
+    border: 2px solid #ddd;
+    flex-shrink: 0;
+}
+
+.color-dot.white { background: #ffffff; }
+.color-dot.blue { background: #3598db; border-color: #3598db; }
+.color-dot.green { background: #30cc70; border-color: #30cc70; }
+.color-dot.yellow { background: #f3c218; border-color: #f3c218; }
+.color-dot.orange { background: #d58337; border-color: #d58337; }
+.color-dot.red { background: #e84c3d; border-color: #e84c3d; }
+
+.form .level .desc {
+    font-size: 14px;
+    color: #333;
+}
+
+/* 底部按钮 - 右上角悬浮 */
+.footer {
+    position: absolute;
+    top: 0.75em;
+    right: 1em;
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.btn:hover {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+    background: #3598db;
+    color: white;
+    border-color: #3598db;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+}
+
+.btn-danger {
+    background: #e84c3d;
+    color: white;
+    border-color: #e84c3d;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+}
+
+/* 图例 - 左下角 */
+.legend {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 12px 15px;
+    border-radius: 6px;
+    z-index: 50;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 4px 0;
+    font-size: 12px;
+    color: #555;
+}
+
+.legend-item .color-dot {
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .header {
+        top: 0.5em;
+        left: 0.5em;
+    }
+    
+    .site-title {
+        font-size: 20px;
+    }
+    
+    .legend {
+        display: none;
+    }
+    
+    .footer {
+        top: 0.5em;
+        right: 0.5em;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .form {
+        width: 200px;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .header, .footer, .form, .legend {
+        display: none;
+    }
+    
+    #svg {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}

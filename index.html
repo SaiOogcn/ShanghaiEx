@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>制沪等级 - ShanghaiEx</title>
+    <meta name="description" content="ShanghaiEx 制沪等级，记录你走过的上海每一个区！">
+    <meta property="og:title" content="制沪等级 - ShanghaiEx">
+    <meta property="og:description" content="记录你走过的上海每一个区！">
+    <meta name="theme-color" content="#9dc3fb">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左上角：标题和等级 -->
+        <header class="header">
+            <h1 class="site-title">制沪等级 <span id="level">0</span></h1>
+        </header>
+        
+        <!-- 右上角：按钮 -->
+        <footer class="footer">
+            <button id="btn-name" class="btn">设置名字</button>
+            <button id="btn-share" class="btn btn-primary">保存图片</button>
+            <button id="btn-reset" class="btn btn-danger">重置</button>
+        </footer>
+        
+        <!-- 地图 SVG - 全屏显示 -->
+        <svg id="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 48">
+            <!-- 各区域路径 -->
+            <g id="area">
+                <!-- 崇明区 -->
+                <path id="崇明区" class="district white" d="M 14 0 L 10 5 L 33 17 L 38 13 L 14 0 M 24 16 L 24 18 L 27 18 L 30 21 L 30 19 L 27 16 L 24 16 M 31 19 L 31 21 L 34 21 L 34 19 L 31 19"/>
+                <!-- 青浦区 -->
+                <path id="普陀区" class="district white" d="M 15 22 L 18 22 L 18 23 L 19 23 L 19 25 L 16 25 L 16 24 L 15 22"/>
+                <!-- 松江区 -->
+                <path id="长宁区" class="district white" d="M 15 25 L 15 26 L 17 26 L 18 26 L 18 25 L 15 25"/>
+                <!-- 闵行区 -->
+                <path id="静安区" class="district white" d="M 18 21 L 18 23 L 19 23 L 19 25 L 20 25 L 20 23 L 19 21 L 18 21"/>
+                <!-- 长宁区 -->
+                <path id="虹口区" class="district white" d="M 19 21 L 21 21 L 21 24 L 20 24 L 20 23 L 19 21"/>
+                <!-- 普陀区 -->
+                <path id="杨浦区" class="district white" d="M 21 20 L 21 24 L 22 24 L 23 23 L 23 20 L 21 20"/>
+                <!-- 静安区 -->
+                <path id="黄浦区" class="district white" d="M 20 24 L 20 25 L 19 25 L 20 26 L 21 26 L 21 24 L 20 24"/>
+                <!-- 徐汇区 -->
+                <path id="徐汇区" class="district white" d="M 17 27 L 19 29 L 20 29 L 20 26 L 19 25 L 18 25 L 18 26 L 17 27"/>
+                <!-- 闵行区-->
+                <path id="闵行区" class="district white" d="M 15 25 L 14 24 L 13 24 L 13 26 L 16 30 L 16 31 L 15 31 L 15 35 L 17 35 L 20 34 L 23 34 L 23 29 L 19 29 L 17 27 L 18 26 L 15 26 L 15 25"/>
+                <!-- 青浦区 -->
+                <path id="青浦区" class="district white" d="M 13 24 L 10 23 L 6 23 L 6 27 L 5 28 L 0 28 L 0 30 L 1 31 L 1 33 L 3 33 L 4 35 L 4 36 L 5 36 L 5 35 L 7 35 L 7 32 L 6 31 L 6 30 L 8 30 L 9 29 L 12 28 L 13 28 L 13 24"/>
+                <!-- 松江区 -->
+                <path id="松江区" class="district white" d="M 5 36 L 5 38 L 7 38 L 7 37 L 8 37 L 13 37 L 13 38 L 14 38 L 15 37 L 16 37 L 16 35 L 15 35 L 15 31 L 16 31 L 16 30 L 13 26 L 13 28 L 12 28 L 9 29 L 8 30 L 6 30 L 6 31 L 7 32 L 7 35 L 5 35 L 5 36"/>
+                <!-- 嘉定区 -->
+                <path id="嘉定区" class="district white" d="M 14 14 L 11 14 L 9 16 L 9 19 L 8 19 L 9 20 L 9 22 L 10 23 L 13 24 L 14 24 L 15 25 L 16 25 L 16 24 L 15 22 L 15 14 L 14 14"/>
+                <!-- 宝山区 -->
+                <path id="宝山区" class="district white" d="M 15 14 L 17 14 L 21 18 L 21 20 L 21 21 L 18 21 L 18 22 L 15 22 L 15 14"/>
+                <!-- 浦东新区-->
+                <path id="浦东新区" class="district white" d="M 21 18 L 28 21 L 34 32 L 35 35 L 35 39 L 31 39 L 31 36 L 27 34 L 23 34 L 23 29 L 20 29 L 20 26 L 21 26 L 21 24 L 22 24 L 23 23 L 23 20 L 21 20 L 21 18"/>
+                <!-- 金山区 -->
+                <path id="金山区" class="district white" d="M 5 38 L 4 40 L 6 40 L 7 39 L 8 39 L 8 42 L 12 42 L 14 46 L 16 46 L 20 42 L 16 37 L 15 37 L 14 38 L 13 38 L 13 37 L 7 37 L 7 38 L 5 38"/>
+                <!-- 奉贤区-->
+                <path id="奉贤区" class="district white" d="M 16 35 L 16 37 L 20 42 L 31 39 L 31 36 L 27 34 L 23 34 L 20 34 L 17 35 L 16 35"/>
+            </g>
+            
+            <!-- 区域名称标签 -->
+            <g id="label" class="labels">
+                <text x="24" y="9.0" data-place="崇明区" style="font-size: 1.5px;">崇明</text>
+                <text x="17.5" y="24" data-place="普陀区" style="font-size: 0.8px;">普陀</text>
+                <text x="16.5" y="25.6" data-place="长宁区" style="font-size: 0.6px;">长宁</text>
+                <text x="18.5" y="22" data-place="静安区" style="writing-mode: vertical-rl; font-size: 0.6px;">静安</text>
+                <text x="20.3" y="22.3" data-place="虹口区" style="writing-mode: vertical-rl; font-size: 0.6px;">虹口</text>
+                <text x="22" y="22" data-place="杨浦区" style="writing-mode: vertical-rl; font-size: 0.9px;">杨浦</text>
+                <text x="20.35" y="25" data-place="黄浦区" style="writing-mode: vertical-rl; font-size: 0.6px;">黄浦</text>
+                <text x="18.9" y="27" data-place="徐汇区" style="writing-mode: vertical-rl; font-size: 0.8px;">徐汇</text>
+                <text x="19" y="32" data-place="闵行区" style="font-size: 1.1px;">闵行</text>
+                <text x="4" y="31" data-place="青浦区" style="font-size: 1.2px;">青浦</text>
+                <text x="10" y="33" data-place="松江区" style="font-size: 1.2px;">松江</text>
+                <text x="12" y="19" data-place="嘉定区" style="font-size: 1.2px;">嘉定</text>
+                <text x="18" y="18" data-place="宝山区" style="font-size: 1.2px;">宝山</text>
+                <text x="27" y="28" data-place="浦东新区" style="font-size: 1.5px;">浦东</text>
+                <text x="13" y="40.5" data-place="金山区" style="font-size: 1.2px;">金山</text>
+                <text x="23" y="38" data-place="奉贤区" style="font-size: 1.2px;">奉贤</text>
+            </g>
+        </svg>
+        
+        <!-- 选择表单 -->
+        <div class="form">
+            <div class="title">
+                <span class="name">区名</span>
+                <a class="search" href="#" target="_blank">🔍 搜索景点</a>
+                <button class="close-btn">×</button>
+            </div>
+            <div class="levels">
+                <label class="level" data-level="red">
+                    <span class="color-dot red"></span>
+                    <span class="desc">常驻（曾居住）</span>
+                </label>
+                <label class="level" data-level="orange">
+                    <span class="color-dot orange"></span>
+                    <span class="desc">宿泊（曾过夜）</span>
+                </label>
+                <label class="level" data-level="yellow">
+                    <span class="color-dot yellow"></span>
+                    <span class="desc">访问（曾游玩）</span>
+                </label>
+                <label class="level" data-level="green">
+                    <span class="color-dot green"></span>
+                    <span class="desc">歇脚（曾换乘、休息）</span>
+                </label>
+                <label class="level" data-level="blue">
+                    <span class="color-dot blue"></span>
+                    <span class="desc">行径（曾路过）</span>
+                </label>
+                <label class="level" data-level="white">
+                    <span class="color-dot white"></span>
+                    <span class="desc">未履（从未去过）</span>
+                </label>
+            </div>
+        </div>
+        
+        <!-- 图例 - 左下角 -->
+        <div class="legend">
+            <div class="legend-item"><span class="color-dot red"></span> 常驻 (曾居住)</div>
+            <div class="legend-item"><span class="color-dot orange"></span> 宿泊 (曾过夜)</div>
+            <div class="legend-item"><span class="color-dot yellow"></span> 访问 (曾游玩)</div>
+            <div class="legend-item"><span class="color-dot green"></span> 歇脚 (曾换乘)</div>
+            <div class="legend-item"><span class="color-dot blue"></span> 行径 (曾路过)</div>
+            <div class="legend-item"><span class="color-dot white"></span> 未履 (从未涉足)</div>
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
