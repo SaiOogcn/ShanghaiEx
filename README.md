@@ -4,7 +4,7 @@
 
 一个简洁优雅的上海各区足迹记录工具，灵感来源于 [JapanEx](https://github.com/ukyouz/JapanEx)。
 
-![preview](https://img.shields.io/badge/区-17个-blue) ![license](https://img.shields.io/badge/license-MIT-green)
+![preview](https://img.shields.io/badge/区-16个-blue) ![license](https://img.shields.io/badge/license-MIT-green)
 
 ## 📸 示例预览
 
@@ -91,5 +91,6 @@ MIT License © 2024
 ---
 
 <p align="center">
-  <b>用脚步丈量上海 🌃</b>
+  <b>制霸上海！ 🌃</b>
+  本README由Claude Opus生成
 </p>
