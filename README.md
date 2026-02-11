@@ -4,7 +4,13 @@
 
 一个简洁优雅的上海各区足迹记录工具，灵感来源于 [JapanEx](https://github.com/ukyouz/JapanEx)。
 
-![preview](https://img.shields.io/badge/区-17个-blue) ![license](https://img.shields.io/badge/license-MIT-green) !
+![preview](https://img.shields.io/badge/区-17个-blue) ![license](https://img.shields.io/badge/license-MIT-green)
+
+## 📸 示例预览
+
+<p align="center">
+  <img src="ShanghaiEx_Level_35 (3).png" alt="地图示例" width="300">
+</p>
 
 ## ✨ 功能特性
 
