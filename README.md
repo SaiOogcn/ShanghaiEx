@@ -31,7 +31,7 @@
 
 ### 在线使用
 
-直接打开 `index.html` 文件或访问[text](https://saioogcn.github.io/ShanghaiEx/)即可使用。
+直接打开 `index.html` 文件或访问[该网页](https://saioogcn.github.io/ShanghaiEx/)即可使用。
 
 ### 本地部署
 
